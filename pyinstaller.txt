@@ -1,0 +1,1 @@
+pyinstaller -i blackmail.ico -F AutoSpam.py --onefile --hidden-import win32gui

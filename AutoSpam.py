@@ -1,5 +1,6 @@
 # Import
 from pynput.keyboard import Key, Controller
+import pywintypes
 import win32gui
 import win32con
 import pickle
@@ -34,7 +35,7 @@ cls()
 keyboard = Controller()
 
 
-def main():
+def AutoSpam():
     global timer, word, amount, inf
     cls()
     saves = str(
@@ -62,7 +63,7 @@ def main():
     correction = str(input("Are you sure these are the correct settings? [y/n]\n1." + str(word) + "\n2." + str(amount) +
                            "\n3." + str(timer) + "\n:")).lower()
     if correction == "n":
-        main()
+        AutoSpam()
 
     # Tes
     ass = "notepad"
@@ -102,7 +103,6 @@ def main():
             win32gui.EnumWindows(windowEnumerationHandler, top_windows)
             for i in top_windows:
                 if ass in i[1].lower():
-                    print(i)
                     win32gui.ShowWindow(i[0], win32con.SW_MAXIMIZE)
                     win32gui.SetForegroundWindow(i[0])
                     for c in word:
@@ -119,10 +119,10 @@ def main():
     # Restart
     continues = str(input("Do you want to redo? [y/n]\n:"))
     if continues == "y":
-        main()
+        AutoSpam()
 
 
-main()
+AutoSpam()
 
 # Quit
 cls()
